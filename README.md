@@ -1,4 +1,4 @@
-[![npm version](https://badge.fury.io/js/cypress-parallel.svg)](https://badge.fury.io/js/cypress-parallel)
+<!-- [![npm version](https://badge.fury.io/js/cypress-parallel.svg)](https://badge.fury.io/js/cypress-parallel) -->
 
 # cypress-parallel
 
@@ -59,7 +59,7 @@ Sample:
 npm run cy:parallel
 ```
 
-or 
+or
 
 Run with npx (no package installation needed)
 
@@ -75,24 +75,24 @@ cypress-parallel -s cy:run -t 2 -a '\"<your-cypress-cmd-args>\"' --spec path/to/
 
 ### Scripts options
 
-| Option            | Alias | Description                        | Type   |
-| ----------------- | ----- | ---------------------------------- | ------ |
-| --help            |       | Show help                          |        |
-| --version         |       | Show version number                |        |
-| --script          | -s    | Your npm Cypress command           | string |
-| --args            | -a    | Your npm Cypress command arguments | string |
-| --threads         | -t    | Number of threads                  | number |
-| --specsDir        | -d    | Cypress specs directory            | string |
-| --spec            |       | Cypress spec file paths            | string |
-| --weightsJson     | -w    | Parallel weights json file         | string |
-| --reporter        | -r    | Reporter to pass to Cypress.       | string |
-| --reporterOptions | -o    | Reporter options                   | string |
-| --reporterModulePath | -n    | Specify the reporter module path   | string |
-| --bail            | -b    | Exit on first failing thread       | string |
-| --verbose         | -v    | Some additional logging            | string |
-| --strictMode      | -m    | Add stricter checks after running the tests           | boolean |
+| Option               | Alias | Description                                 | Type    |
+| -------------------- | ----- | ------------------------------------------- | ------- |
+| --help               |       | Show help                                   |         |
+| --version            |       | Show version number                         |         |
+| --script             | -s    | Your npm Cypress command                    | string  |
+| --args               | -a    | Your npm Cypress command arguments          | string  |
+| --threads            | -t    | Number of threads                           | number  |
+| --specsDir           | -d    | Cypress specs directory                     | string  |
+| --spec               |       | Cypress spec file paths                     | string  |
+| --weightsJson        | -w    | Parallel weights json file                  | string  |
+| --reporter           | -r    | Reporter to pass to Cypress.                | string  |
+| --reporterOptions    | -o    | Reporter options                            | string  |
+| --reporterModulePath | -n    | Specify the reporter module path            | string  |
+| --bail               | -b    | Exit on first failing thread                | string  |
+| --verbose            | -v    | Some additional logging                     | string  |
+| --strictMode         | -m    | Add stricter checks after running the tests | boolean |
 
-**NB**: If you use *cypress-cucumber-preprocesor*, please **disable** the *strictMode* to avoid possible errors:
+**NB**: If you use _cypress-cucumber-preprocesor_, please **disable** the _strictMode_ to avoid possible errors:
 
 ```typescript
 "scripts" :{
@@ -102,7 +102,7 @@ cypress-parallel -s cy:run -t 2 -a '\"<your-cypress-cmd-args>\"' --spec path/to/
 }
 ```
 
-**NB**: If your *cypress-multi-reporters* module is not found on the same level as your Cypress suite (e.g. in a mono-repo) then you can specify the module directory for Cypress to search within.
+**NB**: If your _cypress-multi-reporters_ module is not found on the same level as your Cypress suite (e.g. in a mono-repo) then you can specify the module directory for Cypress to search within.
 
 ```typescript
 "scripts" :{
@@ -119,8 +119,8 @@ cypress-parallel -s cy:run -t 2 -a '\"<your-cypress-cmd-args>\"' --spec path/to/
 You can get the current thread index by reading the `CYPRESS_THREAD` variable.
 
 ```javascript
- const threadIndex = process.env.CYPRESS_THREAD;
- // return 1, 2, 3, 4, ...
+const threadIndex = process.env.CYPRESS_THREAD;
+// return 1, 2, 3, 4, ...
 ```
 
 # Contributors

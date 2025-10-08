@@ -1,7 +1,7 @@
 name: ci
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
   workflow_dispatch:
 permissions:
@@ -15,35 +15,53 @@ permissions:
   repository-projects: none
   security-events: none
   statuses: none
+  id-token: write
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '22.14.0'
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Prepare demo-app
-      run: |
-        cd pizza-demo
-        npm ci
-    - name: Prepare lib
-      run: |
-        cd lib
-        npm ci
-    - name: Prepare root
-      run: |
-        npm ci
-    - name: Execute tests with defaults
-      run: |
-        npm run serve-and-test:parallel
-    - name: Execute only some tests
-      run: |
-        npm run serve-and-test:parallel:some
-    - name: Execute tests with spec reporter
-      run: |
-        npm run serve-and-test:parallel:spec
-    - name: Execute tests with junit reporter
-      run: |
-        npm run serve-and-test:parallel:junit
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22.14.0"
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Prepare demo-app
+        run: |
+          cd pizza-demo
+          npm ci
+      - name: Prepare lib
+        run: |
+          cd lib
+          npm ci
+      - name: Prepare root
+        run: |
+          npm ci
+      - name: Execute tests with defaults
+        run: |
+          npm run serve-and-test:parallel
+      - name: Execute only some tests
+        run: |
+          npm run serve-and-test:parallel:some
+      - name: Execute tests with spec reporter
+        run: |
+          npm run serve-and-test:parallel:spec
+      - name: Execute tests with junit reporter
+        run: |
+          npm run serve-and-test:parallel:junit
+      - name: Generate GitHub App Token
+        id: github-app-token
+        uses: actions/create-github-app-token@v2
+        if: github.event_name == 'push'
+        with:
+          app-id: ${{ vars.GH_PIPELINE_APP_ID }}
+          private-key: ${{ secrets.GH_PIPELINE_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          # Optional: specify repositories if you want to limit scope
+          # repositories: PMS-Automation
+      - name: Trigger release workflow
+        if: github.event_name == 'push'
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ steps.github-app-token.outputs.token }}
+          event-type: release-lib
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
