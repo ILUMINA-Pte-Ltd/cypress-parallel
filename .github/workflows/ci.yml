@@ -1,16 +1,16 @@
 name: ci
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
   workflow_dispatch:
 permissions:
   actions: none
   checks: none
-  contents: read
+  contents: write
   deployments: none
-  issues: none
-  packages: none
+  issues: write
+  packages: write
   pull-requests: none
   repository-projects: none
   security-events: none
@@ -19,31 +19,46 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '22.14.0'
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Prepare demo-app
-      run: |
-        cd pizza-demo
-        npm ci
-    - name: Prepare lib
-      run: |
-        cd lib
-        npm ci
-    - name: Prepare root
-      run: |
-        npm ci
-    - name: Execute tests with defaults
-      run: |
-        npm run serve-and-test:parallel
-    - name: Execute only some tests
-      run: |
-        npm run serve-and-test:parallel:some
-    - name: Execute tests with spec reporter
-      run: |
-        npm run serve-and-test:parallel:spec
-    - name: Execute tests with junit reporter
-      run: |
-        npm run serve-and-test:parallel:junit
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22.14.0"
+          registry-url: "https://npm.pkg.github.com"
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Prepare demo-app
+        run: |
+          cd pizza-demo
+          npm ci
+      - name: Prepare lib
+        run: |
+          cd lib
+          npm ci
+      - name: Prepare root
+        run: |
+          npm ci
+      - name: Execute tests with defaults
+        run: |
+          npm run serve-and-test:parallel
+      - name: Execute only some tests
+        run: |
+          npm run serve-and-test:parallel:some
+      - name: Execute tests with spec reporter
+        run: |
+          npm run serve-and-test:parallel:spec
+      - name: Execute tests with junit reporter
+        run: |
+          npm run serve-and-test:parallel:junit
+      - name: Publish package
+        run: |
+          # configure npm auth for GitHub Packages (used by @semantic-release/npm)
+          cd lib
+          # write an .npmrc that uses the token from the environment
+          printf "//npm.pkg.github.com/:_authToken=${NPM_TOKEN}\n@ilumina-pte-ltd:registry=https://npm.pkg.github.com\n" > ~/.npmrc
+          # double-check npm sees the auth token
+          npm config set //npm.pkg.github.com/:_authToken "${NPM_TOKEN}"
+          # run semantic-release (will use GITHUB_TOKEN for GitHub plugin and NPM_TOKEN for npm publish)
+          npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

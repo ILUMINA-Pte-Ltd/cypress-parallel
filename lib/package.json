@@ -1,11 +1,14 @@
 {
-  "name": "cypress-parallel",
-  "version": "0.15.0",
+  "name": "@ilumina-pte-ltd/cypress-parallel",
+  "version": "1.0.0",
   "description": "Reduce up to 40% your Cypress suite execution time parallelizing the test run on the same machine.",
   "main": "cli.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tnicola/cypress-parallel.git"
+    "url": "git+https://github.com/ILUMINA-Pte-Ltd/cypress-parallel.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "keywords": [
     "cypress",
@@ -13,18 +16,18 @@
     "local",
     "sharding"
   ],
-  "author": "Nicola Tommasi",
+  "author": "ILUMINA Pte Ltd",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tnicola/cypress-parallel/issues"
+    "url": "https://github.com/ILUMINA-Pte-Ltd/cypress-parallel/issues"
   },
-  "homepage": "https://github.com/tnicola/cypress-parallel#readme",
+  "homepage": "https://github.com/ILUMINA-Pte-Ltd/cypress-parallel#readme",
   "bin": {
     "cypress-parallel": "./cli.js"
   },
   "dependencies": {
-    "cli-table3": "^0.6.0",
     "@colors/colors": "^1.5.0",
+    "cli-table3": "^0.6.0",
     "cross-spawn": "^7.0.3",
     "fs-extra": "^10.0.0",
     "glob": "^11.0.1",
@@ -36,5 +39,14 @@
   },
   "peerDependencies": {
     "cypress-multi-reporters": "^2.0.5"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.6",
+    "@semantic-release/npm": "^12.0.2",
+    "@semantic-release/release-notes-generator": "^14.1.0",
+    "semantic-release": "^24.2.9"
   }
 }
