@@ -70,7 +70,7 @@ npx cy:parallel -s cy:run -t 2 -d '<your-cypress-specs-folder>' -a '"<your-cypre
 ## Passing Specs
 
 ```
-cypress-parallel -s cy:run -t 2 -a '\"<your-cypress-cmd-args>\"' --spec path/to/spec1.spec.js path/to/spec2.spec.js
+cypress-parallel -s cy:run -t 2 -a '\"<your-cypress-cmd-args>\"' --spec path/to/spec1.spec.js,path/to/spec2.spec.js,path/to/folder/**/*.spec.js
 ```
 
 ### Scripts options
