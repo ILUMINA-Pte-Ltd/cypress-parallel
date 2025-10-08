@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/ILUMINA-Pte-Ltd/cypress-parallel/compare/v1.0.0...v1.0.1) (2025-10-08)
+
+### Bug Fixes
+
+* update package.json bin path and enhance release workflow [ci skip] ([569a361](https://github.com/ILUMINA-Pte-Ltd/cypress-parallel/commit/569a361fcab8daf4de9163bc1bfe8d9bd12a2f43))
+
 ## 1.0.0 (2025-10-08)
 
 ### ⚠ BREAKING CHANGES
