@@ -1,0 +1,32 @@
+name: Release Lib Package
+
+on:
+    repository_dispatch:
+        types: [release-lib]
+    workflow_dispatch:
+
+permissions:
+    contents: write
+    issues: write
+    packages: write
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/setup-node@v5
+              with:
+                  node-version: "22.14.0"
+                  registry-url: "https://npm.pkg.github.com"
+            - name: Checkout
+              uses: actions/checkout@v5
+            - name: Prepare lib
+              run: |
+                  cd lib
+                  npm ci
+            - name: Publish package
+              run: |
+                  cd lib
+                  npx semantic-release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
