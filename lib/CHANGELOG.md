@@ -1,3 +1,13 @@
+## [1.0.2](https://github.com/ILUMINA-Pte-Ltd/cypress-parallel/compare/v1.0.1...v1.0.2) (2025-10-09)
+
+### Bug Fixes
+
+* add default values for command line options in settings ([dd7cebd](https://github.com/ILUMINA-Pte-Ltd/cypress-parallel/commit/dd7cebd9c94d9424c296a5fd1144f60cd3d8b67f))
+* correct spelling of getMaxPathLengthFrom function in test-suites.js and cli.js ([7ada522](https://github.com/ILUMINA-Pte-Ltd/cypress-parallel/commit/7ada522f75f1ee8dbd618f733533c80a6cc8e0c8))
+* support backward compability when still pass array and new comma seperated string ([22ee5e1](https://github.com/ILUMINA-Pte-Ltd/cypress-parallel/commit/22ee5e1eb9ca984c887cd69b8232f488caf27957))
+* update test suite path handling to enforce glob patterns and deprecate directory paths and spec split by comma seperated ([a02c6d9](https://github.com/ILUMINA-Pte-Ltd/cypress-parallel/commit/a02c6d9910881cbfa3642bf2d1da92d7c98f54bd))
+* update yargs initialization to use hideBin for improved argument parsing ([5be5ab5](https://github.com/ILUMINA-Pte-Ltd/cypress-parallel/commit/5be5ab5b2ff0c17c93289cbd815fddacb8cf2cca))
+
 ## [1.0.1](https://github.com/ILUMINA-Pte-Ltd/cypress-parallel/compare/v1.0.0...v1.0.1) (2025-10-08)
 
 ### Bug Fixes
