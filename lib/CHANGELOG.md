@@ -1,3 +1,9 @@
+## [1.0.3](https://github.com/ILUMINA-Pte-Ltd/cypress-parallel/compare/v1.0.2...v1.0.3) (2025-10-09)
+
+### Bug Fixes
+
+* getTestSuitePaths to handle as an array and support comma seperated ([5a2e9d3](https://github.com/ILUMINA-Pte-Ltd/cypress-parallel/commit/5a2e9d35a54cc8f0ee8e636905693deb5c719e07))
+
 ## [1.0.2](https://github.com/ILUMINA-Pte-Ltd/cypress-parallel/compare/v1.0.1...v1.0.2) (2025-10-09)
 
 ### Bug Fixes
